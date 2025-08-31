@@ -1,0 +1,25 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 単語コレクションの読み書きを許可（テスト用）
+    match /words/{wordId} {
+      allow read, write: if true;
+    }
+    
+    // 学習セッションコレクションの読み書きを許可（テスト用）
+    match /studySessions/{sessionId} {
+      allow read, write: if true;
+    }
+    
+    // 単語帳コレクションの読み書きを許可（テスト用）
+    match /vocabBooks/{bookId} {
+      allow read, write: if true;
+    }
+    
+    // テストコレクション（接続確認用）
+    match /test/{testId} {
+      allow read, write: if true;
+    }
+  }
+}

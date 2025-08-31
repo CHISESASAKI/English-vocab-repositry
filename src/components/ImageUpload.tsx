@@ -136,7 +136,11 @@ const ImageUpload: React.FC<ImageUploadProps> = () => {
         };
       });
 
-      await wordsService.addWords(wordsToSave);
+      console.log('保存する単語データ:', wordsToSave);
+      
+      const savedIds = await wordsService.addWords(wordsToSave);
+      console.log('保存完了 IDs:', savedIds);
+      
       setSuccessMessage(`${selectedIndices.length}個の単語を保存しました！`);
       
       // 保存後のリセット
@@ -145,9 +149,15 @@ const ImageUpload: React.FC<ImageUploadProps> = () => {
       setSelectedFile(null);
       setPreview(null);
       
-    } catch (err) {
-      setError('単語の保存中にエラーが発生しました。');
-      console.error('Save Error:', err);
+    } catch (err: any) {
+      const errorMessage = err?.message || err?.toString() || '不明なエラー';
+      setError(`単語の保存中にエラーが発生しました: ${errorMessage}`);
+      console.error('Save Error Details:', {
+        error: err,
+        message: err?.message,
+        code: err?.code,
+        stack: err?.stack
+      });
     } finally {
       setIsSaving(false);
     }

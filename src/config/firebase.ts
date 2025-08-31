@@ -33,3 +33,9 @@ export const isFirebaseConfigured = () => {
     import.meta.env.VITE_FIREBASE_APP_ID
   );
 };
+
+// LocalStorageモード用の設定確認関数
+export const initializeFirestore = async (): Promise<boolean> => {
+  console.log('LocalStorage mode - Firebase disabled for production');
+  return false;
+};
