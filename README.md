@@ -1,151 +1,141 @@
-# 英単語学習アプリ
+# 📚 英単語学習アプリ
 
-画像認識技術を活用した革新的な英単語学習アプリケーションです。
+OCR技術を活用した英単語学習アプリケーションです。画像から単語を抽出し、4択クイズで効率的に学習できます。
 
-## 主な機能
+## ✨ 主要機能
 
-### 1. 画像認識機能
-- 英単語帳の写真から単語と意味を自動抽出
-- Tesseract.jsを使用したOCR技術
-- 英語と日本語の混合テキストに対応
+### 📸 画像認識による単語抽出
+- Tesseract.js を使用したOCR機能
+- 写真から英単語を自動抽出
+- 抽出した単語を選択して登録
 
-### 2. 問題生成機能
-- 抽出した単語から4択問題を自動生成
-- ランダムな選択肢でバラエティに富んだ学習体験
+### 🎯 インタラクティブ学習
+- 4択クイズ形式での学習
+- 2つの学習モード：
+  - **通常モード**: 全単語からランダム出題
+  - **難易度重視モード**: 間違えた単語を重点的に出題
 
-### 3. 苦手度管理機能
-- 4段階の苦手度による個別学習管理
-  - レベル1: 簡単
-  - レベル2: 普通
-  - レベル3: 難しい
-  - レベル4: とても難しい
-- 正解・不正解の記録による自動苦手度調整
+### 📊 進捗管理
+- 4段階の難易度システム (1-4)
+- 正答率に基づく自動難易度調整
+- 学習履歴の記録
 
-### 4. 2種類の学習モード
-- **通常学習**: すべての単語からランダム出題
-- **苦手特訓**: 苦手度が高い単語を重点的に学習
+### 📱 レスポンシブデザイン
+- スマートフォン: ボトムナビゲーション
+- PC・タブレット: タブナビゲーション
+- 全デバイスでの最適な表示
 
-## 技術スタック
+### 💾 データ永続化
+- LocalStorage による確実なデータ保存
+- インターネット接続不要
+- ブラウザ内でのデータ管理
 
-- **フロントエンド**: React.js + TypeScript
-- **UIライブラリ**: Material-UI (MUI)
-- **画像認識**: Tesseract.js
-- **データベース**: Firebase Firestore
-- **デプロイ**: Vercel
+## 🚀 技術スタック
 
-## セットアップ
+- **Frontend**: React 18 + TypeScript
+- **Build Tool**: Vite
+- **UI Library**: Material-UI (MUI)
+- **OCR Engine**: Tesseract.js
+- **Storage**: LocalStorage API
+- **Deployment**: Vercel
 
-### 必要な環境
-- Node.js 18.0以上
-- npm または yarn
+## 📦 セットアップ
 
-### インストール手順
+### 前提条件
+- Node.js 18+ 
+- npm
 
-1. リポジトリのクローン
+### インストール
 ```bash
+# リポジトリをクローン
 git clone [repository-url]
 cd english-vocab-app
-```
 
-2. 依存関係のインストール
-```bash
+# 依存関係をインストール
 npm install
-```
 
-3. 環境変数の設定
-```bash
-cp .env.example .env
-```
-`.env`ファイルにFirebaseの設定値を記入してください。
-
-4. 開発サーバーの起動
-```bash
+# 開発サーバーを起動
 npm run dev
 ```
 
-## Firebase設定
-
-### プロジェクト: englishapp-chise
-
-1. **Firebase Console設定**
-   - [Firebase Console](https://console.firebase.google.com/project/englishapp-chise) にアクセス
-   - 左サイドバー → ⚙️ → 「プロジェクトの設定」
-   - 「マイアプリ」セクションで Web アプリを追加（未追加の場合）
-
-2. **設定値を取得**
-   ```javascript
-   const firebaseConfig = {
-     // これらの値をコピーして .env.local に設定
-   };
-   ```
-
-3. **環境変数ファイルの作成**
-   `.env.local` ファイルを作成し、以下を記入:
-   ```
-   VITE_FIREBASE_API_KEY=あなたのAPIキー
-   VITE_FIREBASE_AUTH_DOMAIN=englishapp-chise.firebaseapp.com
-   VITE_FIREBASE_PROJECT_ID=englishapp-chise
-   VITE_FIREBASE_STORAGE_BUCKET=englishapp-chise.appspot.com
-   VITE_FIREBASE_MESSAGING_SENDER_ID=あなたのSender ID
-   VITE_FIREBASE_APP_ID=あなたのApp ID
-   ```
-
-4. **Firestoreデータベース**
-   - Firebase Console → Firestore Database → 「データベースを作成」
-   - **テストモードで開始** を選択
-   - ロケーション: `asia-northeast1 (Tokyo)`
-
-### ⚠️ 重要
-- `.env.local` ファイルは gitignore に含まれています
-- 環境変数が設定されていない場合、自動的にLocalStorageを使用します
-
-## デプロイ
-
-### Vercelへのデプロイ
-
-1. Vercel CLIのインストール
+### ビルド
 ```bash
-npm i -g vercel
+# 本番用ビルド
+npm run build
+
+# ビルド結果をプレビュー
+npm run preview
 ```
 
-2. プロジェクトをVercelにデプロイ
-```bash
-vercel
-```
+## 📖 使用方法
 
-3. 環境変数をVercelダッシュボードで設定
+### 1. 単語の追加
+1. 「単語帳登録」タブを選択
+2. 単語帳の写真をアップロード
+3. OCRで抽出された単語を選択
+4. 「選択した単語を保存」をクリック
 
-## 使用方法
-
-### 1. 単語帳の登録
-- 「単語帳登録」タブで画像をアップロード
-- 「文字を抽出」ボタンでOCR処理を実行
-- 認識された単語を確認・編集
-- 「データベースに追加」でFirestoreに保存
-
-### 2. 学習モード
-- 「学習モード」タブで学習タイプを選択
-- 通常学習または苦手特訓を選択
-- 4択問題に回答して学習を進行
+### 2. 学習開始
+1. 「学習モード」タブを選択
+2. 学習モードを選択（通常 or 難易度重視）
+3. 4択クイズに回答
+4. 結果を確認して次の問題へ
 
 ### 3. 単語管理
-- 「単語一覧」タブで登録済み単語を管理
-- 苦手度での絞り込み機能
-- 単語の編集・削除機能
+1. 「単語一覧」タブを選択
+2. 登録済み単語の確認・編集・削除
+3. 難易度でのフィルタリング
+4. 手動での単語追加
 
-## 今後の拡張予定
+## 🔧 設定
 
-- [ ] ユーザー認証機能
-- [ ] 学習履歴の詳細分析
-- [ ] 単語の音声再生機能
-- [ ] スペルチェック問題モード
-- [ ] 単語帳のシェア機能
-- [ ] AI powered hint system
+現在はLocalStorageモードで動作しています：
+- データは使用ブラウザ内に保存
+- インターネット接続不要
+- 確実な動作保証
 
-## ライセンス
+## 🌐 デプロイ
 
-MIT License
+詳細なデプロイ手順は [DEPLOY.md](./DEPLOY.md) を参照してください。
 
-## 貢献
+### Vercel での簡単デプロイ
+1. [Vercel](https://vercel.com/chises-projects) にアクセス
+2. このプロジェクトをインポート
+3. 自動でビルド・デプロイが完了
 
-プルリクエストや Issue の投稿を歓迎します。
+## 📈 パフォーマンス
+
+- 軽量設計でスムーズな動作
+- OCR処理の最適化
+- レスポンシブUI
+
+## 🤝 開発
+
+### 開発環境
+```bash
+npm run dev    # 開発サーバー起動
+npm run build  # 本番ビルド
+npm run lint   # ESLintチェック
+```
+
+### プロジェクト構造
+```
+src/
+├── components/     # Reactコンポーネント
+├── services/       # データベース・API層
+├── types/          # TypeScript型定義
+├── config/         # 設定ファイル
+└── App.tsx         # メインアプリケーション
+```
+
+## 📄 ライセンス
+
+このプロジェクトは個人利用目的で開発されました。
+
+## 🤖 開発支援
+
+このアプリケーションは [Claude Code](https://claude.ai/code) の支援により開発されました。
+
+---
+
+🎯 **効率的な英単語学習を始めましょう！**
